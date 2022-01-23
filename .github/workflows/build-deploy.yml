@@ -1,0 +1,28 @@
+# name of the file
+name: Build and Deploy FastAPI Code
+
+# specify when should the CI/CD be triggered
+# triggered on push and pull requests in main branch only
+# to trigger on all branches -> on : [push, pull_request]
+on:
+  push:
+    branches:
+      - "main"
+    # - "next_branch" and so on..
+  pull_request:
+    branches:
+      - "main"
+
+# provide list of jobs to be done on the runner
+jobs:
+  job1: 
+    # specify the os
+    runs-on: ubuntu-latest
+    # specify the steps
+    steps:
+        # name -> human readable discription of the step
+        # uses -> the github action to be performed
+      - name: Pulling git repo
+        uses: actions/checkout@v2
+      - name: Say hi
+        run: echo "hey priya" 

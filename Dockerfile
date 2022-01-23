@@ -2,11 +2,11 @@ FROM python:3.9.7
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
+COPY ./requirements.txt /usr/src/app/requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 
-COPY . /app
+COPY . /usr/src/app/
 
-CMD ["uvicorn", "--pythonpath", "/app/src", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
