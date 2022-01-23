@@ -16,22 +16,77 @@ on:
 # provide list of jobs to be done on the runner
 jobs:
   job1: 
+
+    # specify the environment (created in github environments)
+    # environment:
+    #   name: testing -> a sample name of the github environment
+
+    
+    # Provide all the environment variables
+    # secrets.some_name -> the key value pairs are setup under secrets in github
+    # the secrets don't get exposed to the world but is accessible only by the job1
+    env:
+      DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+      DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+      DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      ALGORITHM: ${{secrets.ALGORITHM}}
+      ACCESS_TOKEN_EXPIRE_MINS: ${{secrets.ACCESS_TOKEN_EXPIRE_MINS}}
+
+
+      
+    # Service container to run with job1
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image for postgres
+        image: postgres
+        # Provide the name and password for postgres db
+        env:
+          POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+          POSTGRES_DB: ${{secrets.DATABASE_NAME}}_test
+        # Provide the port number to run on
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    
     # specify the os
     runs-on: ubuntu-latest
+
+    
     # specify the steps
     steps:
         # name -> human readable discription of the step
         # uses -> the github action to be performed
+
+      # Download a copy of the code in the repository before running CI tests
       - name: Pulling git repo
         uses: actions/checkout@v2
+
+      # Perform the installation of python3.9
       - name: Install python3.9
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"
+
+      # Performs Updation of the pip version
       - name: Update pip
         run: python -m pip install --upgrade pip
+
+      # Performs a clean installation of all dependencies in the `requirements.txt` file
       - name: Install all dependencies
         run: pip install -r requirements.txt
+
+      # Performs installation of pytest module and
+      # Runs all the tests for the code
       - name: Test with pytest
         run: |
           pip install pytest
