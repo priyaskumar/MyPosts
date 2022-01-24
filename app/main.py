@@ -28,7 +28,7 @@ app.include_router(vote.router)
 # home page (GET REQUEST --> from webpage to user)
 @app.get("/")
 async def root():
-    return {"message":"Welcome to my API from CI/CD pipeline"}
+    return {"message":"Welcome to my API from ubuntu"}
 
 
 

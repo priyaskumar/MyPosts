@@ -1,7 +1,7 @@
 __pycache__
 venv/
 .env
-MyNotes.txt
+FastAPI.md
 .pytest_cache
 
 
