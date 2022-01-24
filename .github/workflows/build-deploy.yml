@@ -15,7 +15,9 @@ on:
 
 # provide list of jobs to be done on the runner
 jobs:
-  job1: 
+
+  # Provides all the commands for CI
+  build: 
 
     # specify the environment (created in github environments)
     # environment:
@@ -24,7 +26,7 @@ jobs:
     
     # Provide all the environment variables
     # secrets.some_name -> the key value pairs are setup under secrets in github
-    # the secrets don't get exposed to the world but is accessible only by the job1
+    # the secrets don't get exposed to the world but is accessible only by the workflows
     env:
       DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
       DATABASE_PORT: ${{secrets.DATABASE_PORT}}
@@ -37,7 +39,7 @@ jobs:
 
 
 
-    # Service container to run with job1
+    # Service container to run with build
     services:
       # Label used to access the service container
       postgres:
@@ -118,3 +120,28 @@ jobs:
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
+  # Provides all the commands for CD
+  deploy:
+
+    # Specify the os
+    runs-on: ubuntu-latest
+
+
+    # Since all jobs are run parallely by default we need to specify what are the 
+    # jobs need to be completed before beginning this job in 'needs'
+
+    # In this case, we need the 'build' job to be run first and then the 'deploy' job
+    needs: [build]
+
+    # Provide the steps
+    steps:
+
+      - name: Pulling git repo
+        uses: actions/checkout@v2
+
+      - name: Deploying to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
