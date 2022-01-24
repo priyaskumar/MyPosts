@@ -128,7 +128,7 @@ jobs:
 
 
     # Since all jobs are run parallely by default we need to specify what are the 
-    # jobs need to be completed before beginning this job in 'needs'
+    # jobs need to be completed before beginning this job (in 'needs')
 
     # In this case, we need the 'build' job to be run first and then the 'deploy' job
     needs: [build]
