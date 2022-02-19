@@ -28,6 +28,8 @@ FastAPI in short is a lightweight, fast webframework for building APIs.
 - Heroku
 - Ubuntu
 - SwaggerUI
+- Python
+- FastAPI web framework
 
 _**Python Libraries**_:
 
