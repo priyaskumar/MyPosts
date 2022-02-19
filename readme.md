@@ -45,9 +45,9 @@ _**Python Libraries**_:
 
 ## _Check out_ :
 
-- [Python Web frameworks]()
+- [Python Web frameworks](https://github.com/priyaskumar/fastapi/blob/main/1.%20Python%20Web%20frameworks.md#python-web-frameworks)
 
-- [Steps to build a RESTful API]()
+- [Steps to build a RESTful API](https://github.com/priyaskumar/fastapi/blob/main/2.%20Steps%20to%20build%20a%20RESTful%20API.md#steps-to-build-a-full-fledged-restful-api-in-python-using-fastapi)
 
 
 ## _Link to the application_: 
