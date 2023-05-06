@@ -1,6 +1,6 @@
-_Python-FastAPI Tutorial_
+_MyPosts - FastAPI_
 ==
-This is a simple social-media application (CRUD application) build with FastAPI web framework.
+This is a social-media application (CRUD application) build with FastAPI web framework.
 
 Users will be able to,
 
