@@ -51,11 +51,6 @@ _**Python Libraries**_:
 
 - [Steps to build a RESTful API](https://github.com/priyaskumar/fastapi/blob/main/2.%20Steps%20to%20build%20a%20RESTful%20API.md#steps-to-build-a-full-fledged-restful-api-in-python-using-fastapi)
 
-
-## _Link to the application_: 
-
-[FastAPI](http://159.89.160.176/docs)
-
 ## _References_:
 
 - [FastAPI YouTube Tutorial](https://www.youtube.com/watch?v=0sOvCWFmrtA&t=67653s)
